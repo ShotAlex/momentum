@@ -15,7 +15,4 @@ const showTime = () => {
 // showTime();
 const addZero = n => (+n < 10 ? '0' : '') + n;
 
-
-
-
 setInterval(showTime, 1000);
