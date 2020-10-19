@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Commissioner', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #000;
+}
+
+#time {
+  font-size: 8rem;
+}
+
+h1 {
+  margin-bottom: 3em;
+}
+
+h2 {
+  margin-bottom: .5em;
+  opacity: .5;
+}
+
+@media (max-width: 800px) {
+  #time {
+    font-size: 6rem;
+  }
+}
