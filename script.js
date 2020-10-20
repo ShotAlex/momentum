@@ -28,15 +28,15 @@ const setBgGreet = () => {
   } else if (hour < 10) {
     // Morning
     document.body.style.backgroundImage = 'url(./assets/images/morning/01.jpg)';
-    greeting.textContent = 'Good Night';
+    greeting.textContent = 'Good Morning';
   } else if (hour < 18) {
     // Day
     document.body.style.backgroundImage = 'url(./assets/images/day/01.jpg)';
-    greeting.textContent = 'Good Night';
+    greeting.textContent = 'Good Day';
   } else {
     // Evening
     document.body.style.backgroundImage = 'url(./assets/images/evening/01.jpg)';
-    greeting.textContent = 'Good Night';
+    greeting.textContent = 'Good Evening';
   }
 }
 
