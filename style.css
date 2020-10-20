@@ -14,11 +14,14 @@ body {
   text-align: center;
   color: #000;
 }
-
+#time,
+h1,
+h2 {
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 5px;
+}
 #time {
   font-size: 8rem;
-  background-color: rgba(255, 255, 255, .5);
-  border-radius: 10px;
 }
 
 h1 {
@@ -27,7 +30,7 @@ h1 {
 
 h2 {
   margin-bottom: .5em;
-  opacity: .5;
+  opacity: .9;
 }
 
 @media (max-width: 800px) {

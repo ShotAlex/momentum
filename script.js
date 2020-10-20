@@ -16,7 +16,6 @@ const showTime = () => {
 }
 // showTime();
 const addZero = n => (+n < 10 ? '0' : '') + n;
-setInterval(showTime, 1000);
 
 // BACKGROUND AND GREETING
 const setBgGreet = () => {
@@ -41,4 +40,21 @@ const setBgGreet = () => {
   }
 }
 
+// NAME
+const getName = () => {
+  (localStorage.getItem('name') === null)
+    ? name.textContent = '[Enter Name]'
+    : name.textContent = localStorage.getItem('name')
+}
+const getFocus = () => {
+  (localStorage.getItem('focus') === null)
+    ? focus.textContent = '[Enter Focus]'
+    : focus.textContent = localStorage.getItem('focus')
+}
+
+
+
+setInterval(showTime, 1000);
 setBgGreet();
+getName();
+getFocus();
