@@ -3,7 +3,6 @@ const time = document.getElementById('time'),
       name = document.getElementById('name'),
       focus = document.getElementById('focus');
 
-
 // TIME
 const showTime = () => {
   let today = new Date(),
@@ -11,9 +10,9 @@ const showTime = () => {
       min = today.getMinutes(),
       sec = today.getSeconds();
 
-  time.innerHTML = `${addZero(hour)}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
-  // setTimeout(showTime, 1000);
+  time.innerHTML = `${addZero(hour)}:${addZero(min)}:${addZero(sec)}`;
 }
+
 // showTime();
 const addZero = n => (+n < 10 ? '0' : '') + n;
 
@@ -40,7 +39,7 @@ const setBgGreet = () => {
   }
 }
 
-// NAME
+// GET NAME and FOCUS
 const getName = () => {
   (localStorage.getItem('name') === null)
     ? name.textContent = '[Enter Name]'
@@ -52,6 +51,32 @@ const getFocus = () => {
     : focus.textContent = localStorage.getItem('focus')
 }
 
+// SET NAME and FOCUS
+const setName = (e) => {
+  if (e.type === 'keypress') {
+    if (e.which == 13 || e.keyCode == 13) {
+      localStorage.setItem('name', e.target.innerText)
+      name.blur()
+    }
+  } else {
+    localStorage.setItem('name', e.target.innerText)
+  }
+}
+const setFocus = (e) => {
+  if (e.type === 'keypress') {
+    if (e.which == 13 || e.keyCode == 13) {
+      localStorage.setItem('focus', e.target.innerText)
+      focus.blur()
+    }
+  } else {
+    localStorage.setItem('focus', e.target.innerText)
+  }
+}
+
+name.addEventListener('keypress', setName);
+name.addEventListener('blur', setName);
+focus.addEventListener('keypress', setFocus);
+focus.addEventListener('blur', setFocus);
 
 
 setInterval(showTime, 1000);
