@@ -20,11 +20,11 @@ const addZero = n => (+n < 10 ? '0' : '') + n;
 const setBgGreet = () => {
   let hour = (new Date()).getHours();
 
-  if (hour < 5 || hour > 23) {
+  if (hour < 6) {
     // Night
     document.body.style.backgroundImage = 'url(./assets/images/night/01.jpg)';
     greeting.textContent = 'Good Night';
-  } else if (hour < 10) {
+  } else if (hour < 12) {
     // Morning
     document.body.style.backgroundImage = 'url(./assets/images/morning/01.jpg)';
     greeting.textContent = 'Good Morning';
