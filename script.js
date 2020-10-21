@@ -5,11 +5,7 @@ const time = document.getElementById('time'),
       focus = document.getElementById('focus'),
       timeDate = document.getElementById('date'),
       quote = document.getElementById('quote');
-      // nextBg = document.getElementById('btn')
-
-// const quotesData1 = require('./assets/data/quotes.json')
-// const quotesData1 = require('./assets/data/quotes.json');
-// const quotesData = JSON.parse(quotesData1)
+      quoteBtn = document.getElementById('quoteBtn');
 
 // TIME
 const showTime = () => {
@@ -116,13 +112,13 @@ const setFocus = (e) => {
 // QUOTE
 const showQuote = () => {
   fetch('./assets/data/quotes.json')
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      let randQuote = +getRandomNumber(1, data.quotes.length)
-      let currentQuote = data.quotes[randQuote]
+      const randQuote = +getRandomNumber(1, data.quotes.length)
+      const currentQuote = data.quotes[randQuote]
       quote.innerHTML = `${currentQuote.quote}<br/><br/>${currentQuote.author}`;
     })
-    .catch( (err) => {
+    .catch( err => {
       console.log('Error:', err);
       quote.innerHTML = `Good day!`;
     })
@@ -135,8 +131,7 @@ name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 quote.addEventListener('click', showQuote);
-// nextBg.addEventListener('click', showNextBg);
-
+quoteBtn.addEventListener('click', showQuote);
 
 setInterval(showTime, 1000);
 showDate();
