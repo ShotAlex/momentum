@@ -15,7 +15,10 @@ body {
   color: #000;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
   padding: 10px;
+  background-image: url("./assets/overlay.png");
+  transition: background-image 1s ease-in-out;
 }
 
 .time {
