@@ -29,12 +29,14 @@ h2 {
 }
 
 h1 {
-  margin-bottom: 3em;
+  padding: 2px 10px;
+  margin-bottom: 2em;
 }
 
 h2 {
   margin-bottom: .5em;
   opacity: .9;
+  padding: 2px 10px;
 }
 
 @media (max-width: 800px) {
