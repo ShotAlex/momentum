@@ -32,7 +32,8 @@ body {
 
 .time,
 h1,
-h2 {
+h2,
+.quote {
     background-color: rgba(255, 255, 255, .5);
 }
 #time {
@@ -53,6 +54,13 @@ h2 {
   opacity: .9;
   padding: 2px 10px;
   border-radius: 5px;
+}
+
+.quote {
+  max-width: 600px;
+  width: 100%;
+  padding: 2px 5px;
+  margin-top: 5rem;
 }
 
 @media (max-width: 800px) {

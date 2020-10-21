@@ -1,9 +1,15 @@
+
 const time = document.getElementById('time'),
       greeting = document.getElementById('greeting'),
       name = document.getElementById('name'),
       focus = document.getElementById('focus'),
-      timeDate = document.getElementById('date');
+      timeDate = document.getElementById('date'),
+      quote = document.getElementById('quote');
       // nextBg = document.getElementById('btn')
+
+// const quotesData1 = require('./assets/data/quotes.json')
+// const quotesData1 = require('./assets/data/quotes.json');
+// const quotesData = JSON.parse(quotesData1)
 
 // TIME
 const showTime = () => {
@@ -13,7 +19,11 @@ const showTime = () => {
       sec = today.getSeconds();
 
   time.innerHTML = `${addZero(hour)}:${addZero(min)}:${addZero(sec)}`;
-  if (hour === 0 && min === 0) showNextBg();
+
+  if (min === 0 && sec === 0) {
+    showNextBg();
+    showQuote();
+  }
 }
 
 // DATE
@@ -38,14 +48,10 @@ function getRandomNumber(min = 1, max = 20) {
 // Check Time of Day
 const checkTimeOfDay = (h) => {
   switch (h) {
-    case h<6:
-      return 'night';
-    case h<12:
-      return 'morning';
-    case h<18:
-      return 'day';
-    default:
-      return 'evening';
+    case h<6: return 'night';
+    case h<12: return 'morning';
+    case h<18: return 'day';
+    default: return 'evening';
   }
 }
 
@@ -107,12 +113,28 @@ const setFocus = (e) => {
 }
 
 
+// QUOTE
+const showQuote = () => {
+  fetch('./assets/data/quotes.json')
+    .then(response => response.json())
+    .then(data => {
+      let randQuote = +getRandomNumber(1, data.quotes.length)
+      let currentQuote = data.quotes[randQuote]
+      quote.innerHTML = `${currentQuote.quote}<br/><br/>${currentQuote.author}`;
+    })
+    .catch( (err) => {
+      console.log('Error:', err);
+      quote.innerHTML = `Good day!`;
+    })
+}
+
 
 
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+quote.addEventListener('click', showQuote);
 // nextBg.addEventListener('click', showNextBg);
 
 
@@ -121,6 +143,7 @@ showDate();
 setBgGreet();
 getName();
 getFocus();
+showQuote();
 // TODO
 // setInterval(showNextBg, 2000);
 // add Weather
