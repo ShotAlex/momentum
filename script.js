@@ -1,7 +1,8 @@
 const time = document.getElementById('time'),
       greeting = document.getElementById('greeting'),
       name = document.getElementById('name'),
-      focus = document.getElementById('focus');
+      focus = document.getElementById('focus'),
+      timeDate = document.getElementById('date');
 
 // TIME
 const showTime = () => {
@@ -13,20 +14,31 @@ const showTime = () => {
   time.innerHTML = `${addZero(hour)}:${addZero(min)}:${addZero(sec)}`;
 }
 
+// DATE
+const showDate = (lang = 'en') => {
+  let today = new Date(),
+      locale = lang === 'en' ? 'en-us' : 'ru-ru',
+      dayOfWeek = today.toLocaleString(locale, { weekday: "long" }),
+      dayNumber = today.getDate(),
+      month = today.toLocaleString(locale, { month: 'long' });
+
+  timeDate.innerHTML = `${dayOfWeek}, ${dayNumber} ${month}`;
+}
+
 // showTime();
 const addZero = n => (+n < 10 ? '0' : '') + n;
 
+// GET RANDOM NUMBER
 function getRandomNumber(min = 1, max = 20) {
-  let num = (Math.random() * (max - min) + min).toFixed(0);
-  console.log(num);
-  return rand = num < 10 ? '0'+num : ''+num;
+  let num = Math.floor(Math.random() * (max - min)) + min;
+  return rand = num < 10 ? '0'+num : num;
 }
 
 // BACKGROUND AND GREETING
 const setBgGreet = () => {
   let hour = (new Date()).getHours();
-  let numRandPic = Math.random()
-  console.log('numRandPic : ', numRandPic);
+  // let numRandPic = Math.random()
+  // console.log('numRandPic : ', numRandPic);
 
   if (hour < 6) {
     // Night
@@ -88,10 +100,11 @@ focus.addEventListener('blur', setFocus);
 
 
 setInterval(showTime, 1000);
+showDate();
 setBgGreet();
 getName();
 getFocus();
 // TODO
-// Change IMG every Hour
+// Change IMG every Hour 0min 0 sec
 // add Weather
 // 

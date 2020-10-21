@@ -17,6 +17,7 @@ body {
   background-size: cover;
 }
 #time,
+#date,
 h1,
 h2 {
     background-color: rgba(255, 255, 255, .5);
@@ -26,6 +27,13 @@ h2 {
   max-width: 600px;
   width: 100%;
   font-size: 8rem;
+}
+
+#date {
+  max-width: 400px;
+  width: 100%;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
