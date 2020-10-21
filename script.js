@@ -16,25 +16,33 @@ const showTime = () => {
 // showTime();
 const addZero = n => (+n < 10 ? '0' : '') + n;
 
+function getRandomNumber(min = 1, max = 20) {
+  let num = (Math.random() * (max - min) + min).toFixed(0);
+  console.log(num);
+  return rand = num < 10 ? '0'+num : ''+num;
+}
+
 // BACKGROUND AND GREETING
 const setBgGreet = () => {
   let hour = (new Date()).getHours();
+  let numRandPic = Math.random()
+  console.log('numRandPic : ', numRandPic);
 
   if (hour < 6) {
     // Night
-    document.body.style.backgroundImage = 'url(./assets/images/night/01.jpg)';
+    document.body.style.backgroundImage = `url(./assets/images/night/${getRandomNumber()}.jpg)`;
     greeting.textContent = 'Good Night';
   } else if (hour < 12) {
     // Morning
-    document.body.style.backgroundImage = 'url(./assets/images/morning/01.jpg)';
+    document.body.style.backgroundImage = `url(./assets/images/morning/${getRandomNumber()}.jpg)`;
     greeting.textContent = 'Good Morning';
   } else if (hour < 18) {
     // Day
-    document.body.style.backgroundImage = 'url(./assets/images/day/01.jpg)';
+    document.body.style.backgroundImage = `url(./assets/images/day/${getRandomNumber()}.jpg)`;
     greeting.textContent = 'Good Day';
   } else {
     // Evening
-    document.body.style.backgroundImage = 'url(./assets/images/evening/01.jpg)';
+    document.body.style.backgroundImage = `url(./assets/images/evening/${getRandomNumber()}.jpg)`;
     greeting.textContent = 'Good Evening';
   }
 }
@@ -83,3 +91,7 @@ setInterval(showTime, 1000);
 setBgGreet();
 getName();
 getFocus();
+// TODO
+// Change IMG every Hour
+// add Weather
+// 
