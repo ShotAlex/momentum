@@ -18,7 +18,7 @@ const showTime = () => {
 const showDate = (lang = 'en') => {
   let today = new Date(),
       locale = lang === 'en' ? 'en-us' : 'ru-ru',
-      dayOfWeek = today.toLocaleString(locale, { weekday: "long" }),
+      dayOfWeek = today.toLocaleString(locale, { weekday: 'long' }),
       dayNumber = today.getDate(),
       month = today.toLocaleString(locale, { month: 'long' });
 
