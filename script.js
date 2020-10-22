@@ -6,13 +6,15 @@ const time = document.getElementById('time'),
       timeDate = document.getElementById('date'),
       quote = document.getElementById('quote'),
       quoteAuthor = document.getElementById('quote-author'),
-      quoteBtn = document.getElementById('quoteBtn');
+      quoteBtn = document.getElementById('quoteBtn'),
+      nextBg = document.getElementById('next-bg');
+// weather
+const weatherIcon = document.querySelector('.weather-icon'),
+      temperature = document.querySelector('.temperature'),
+      weatherDescription = document.querySelector('.weather-description'),
+      city = document.querySelector('.city');
 
-const weatherIcon = document.querySelector('.weather-icon');
-const temperature = document.querySelector('.temperature');
-const weatherDescription = document.querySelector('.weather-description');
-const city = document.querySelector('.city');
-
+// temperature.setAttribute('size', temperature.getAttribute('textContent').length);
 
 // TIME
 const showTime = () => {
@@ -60,9 +62,12 @@ const checkTimeOfDay = (h) => {
 
 // NEXT BACKGROUND
 const showNextBg = () => {
+  nextBg.disabled = true;
   let hour = (new Date()).getHours();
   let time = checkTimeOfDay(hour);
   document.body.style.backgroundImage = `url(./assets/images/${time}/${getRandomNumber()}.jpg)`;
+
+  setTimeout(() => nextBg.disabled = false, 3000);
 }
 
 // BACKGROUND AND GREETING
@@ -135,7 +140,6 @@ const showQuote = () => {
 // WEATHER
 async function getWeather(city = 'Минск',lang = 'ru') {
   const keyAPI = 'cacc13c2899b6095815285b1dee10aaf';
-  console.log(keyAPI);
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=${keyAPI}&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
@@ -144,14 +148,14 @@ async function getWeather(city = 'Минск',lang = 'ru') {
 
 async function  showWeather() {
   const data = await getWeather(city.textContent);
-  console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
-  console.log(data);
-
   weatherIcon.className = 'weather-icon owf';
-
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${data.main.temp}°C`;
+  temperature.textContent = `${parseInt(data.main.temp)}°C`;
   weatherDescription.textContent = data.weather[0].description;
+
+  console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+  console.log('data', data);
+
 }
 
 function setCity(event) {
@@ -171,6 +175,7 @@ focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 quote.addEventListener('click', showQuote);
 quoteBtn.addEventListener('click', showQuote);
+nextBg.addEventListener('click', showNextBg);
 
 setInterval(showTime, 1000);
 showDate();

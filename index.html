@@ -9,38 +9,44 @@
   <title>Momentum</title>
 </head>
 <body>
+  
+  <!-- WEATHER -->
   <div class="weather">
-    <i class="weather-icon owf"></i>
-    <div class="temperature"></div>
+    <div class="temp">
+      <i class="weather-icon owf"></i>
+      <div class="temperature">- °C</div>
+    </div>
     <div class="weather-description"></div>
-    <div class="city" contenteditable="true">Минск</div>
-
+    <div class="city" contenteditable="true" >Минск</div>
   </div>
 
-
+  <!-- TIME -->
   <div class="time">
     <time id="time">00:00:00</time>
     <time id="date">Today, Day Month</time>
   </div>
 
-  <h1>
-    <span id="greeting"></span> 
-    <span id="name" contenteditable="true"></span> 
-  </h1>
-
-  <h2>
-    <p>What's your focus for today?</p>
-    <p id="focus" contenteditable="true"></p>
-  </h2>
-
-  <div class="quote">
-   <h3> <button id="quoteBtn" title="Click to see a different quote">Quote of the day</button></h3>
-   <q id="quote">You awesome</q>
-   <p id="quote-author">God</p>
-   
+  <div class="personal">
+    <!-- NAME -->
+    <h1 class="name">
+      <span id="greeting"></span> 
+      <span id="name" contenteditable="true"></span> 
+    </h1>
+    <!-- FOCUS -->
+    <h2 class="focus">
+      <p>What's your focus for today?</p>
+      <p id="focus" contenteditable="true"></p>
+    </h2>
   </div>
 
-  <!-- <button id="btn"> NEXT BACKGROUND </button> -->
+  <!-- QUOTE -->
+  <div class="quote">
+    <h3> <button id="quoteBtn" title="Click to see a different quote">Quote of the day</button></h3>
+    <q id="quote">You awesome</q>
+    <p id="quote-author">God</p>
+  </div>
+
+  <button id="next-bg"> NEXT BACKGROUND </button>
 
   <script src="script.js"></script>
 </body>
