@@ -11,7 +11,7 @@
 
 body {
   font-family: 'Commissioner', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -31,11 +31,13 @@ body {
   margin: 0 0 0 auto;
   padding: 10px;
   margin-bottom: 3rem;
+  align-items: baseline;
 }
 
 .temp {
   display: flex;
   justify-content: center;
+  margin-bottom: .5rem;
 }
 
 .temperature {
@@ -45,6 +47,7 @@ body {
 .weather-icon {
   margin-right: 0.5rem;
   font-size: 4rem;
+  height: fit-content;
 }
 
 .city {
@@ -79,6 +82,7 @@ body {
 .quote {
     background-color: var(--color-bg);
     border-radius: 10px;
+    padding: 1rem;
 }
 #time {
   font-size: 8rem;
@@ -108,10 +112,12 @@ h2 {
 }
 
 .quote {
+  position: relative;
   max-width: 600px;
   width: 100%;
   padding: 8px;
   margin-top: 5rem;
+  margin-bottom: 3rem;
 }
 
 h3 {
@@ -125,14 +131,9 @@ h3 {
   color: inherit;
   border: none;
   padding: 2px 8px;
-  font: inherit;
-  outline: inherit;
   background-color: rgba(0, 0, 0, .2);
 }
 
-#quoteBtn:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
 
 #quote-author {
   width: fit-content;
@@ -140,11 +141,23 @@ h3 {
   margin-top: 0.5rem;
 }
 
+#next-quote {
+  position: absolute;
+  right: 10px;
+  top: -30px;
+  width: 60px;
+  height: 60px;
+  font-size: .7rem;
+}
+
 #next-bg {
   width: 80px;
   height: 80px;
   margin-top: auto;
+}
 
+#next-quote,
+#next-bg {
   cursor: pointer;
   outline: none;
   border-radius: 100%;
@@ -156,6 +169,7 @@ h3 {
   transition: .3s;
 }
 
+#next-quote:hover,
 #next-bg:hover {
   filter: brightness(80%);
   box-shadow: 0 0 6px 2px rgba(255, 255, 255, .6);

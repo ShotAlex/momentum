@@ -6,7 +6,7 @@ const time = document.getElementById('time'),
       timeDate = document.getElementById('date'),
       quote = document.getElementById('quote'),
       quoteAuthor = document.getElementById('quote-author'),
-      quoteBtn = document.getElementById('quoteBtn'),
+      nextQuote = document.getElementById('next-quote');
       nextBg = document.getElementById('next-bg');
 // weather
 const weatherIcon = document.querySelector('.weather-icon'),
@@ -171,8 +171,8 @@ name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 quote.addEventListener('click', showQuote);
-quoteBtn.addEventListener('click', showQuote);
 nextBg.addEventListener('click', showNextBg);
+nextQuote.addEventListener('click', showQuote);
 
 setInterval(showTime, 1000);
 showDate();
