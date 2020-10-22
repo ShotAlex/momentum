@@ -16,8 +16,6 @@ const weatherIcon = document.querySelector('.weather-icon'),
       weatherSpeed = document.querySelector('.weather-speed'),
       city = document.querySelector('.city');
 
-// temperature.setAttribute('size', temperature.getAttribute('textContent').length);
-
 // TIME
 const showTime = () => {
   let today = new Date(),
@@ -54,12 +52,7 @@ function getRandomNumber(min = 1, max = 20) {
 
 // Check Time of Day
 const checkTimeOfDay = (h) => {
-  switch (h) {
-    case h<6: return 'night';
-    case h<12: return 'morning';
-    case h<18: return 'day';
-    default: return 'evening';
-  }
+  return h < 6 ? 'night' : h < 12 ? 'morning' : h < 18 ? 'day' : 'evening';
 }
 
 // NEXT BACKGROUND
@@ -188,8 +181,3 @@ getName();
 getFocus();
 showQuote();
 showWeather();
-// TODO
-// setInterval(showNextBg, 2000);
-// add Weather
-// 
-// влажность и скорость ветра
