@@ -12,6 +12,8 @@ const time = document.getElementById('time'),
 const weatherIcon = document.querySelector('.weather-icon'),
       temperature = document.querySelector('.temperature'),
       weatherDescription = document.querySelector('.weather-description'),
+      weatherHumidity = document.querySelector('.weather-humidity'),
+      weatherSpeed = document.querySelector('.weather-speed'),
       city = document.querySelector('.city');
 
 // temperature.setAttribute('size', temperature.getAttribute('textContent').length);
@@ -151,11 +153,13 @@ async function  showWeather() {
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${parseInt(data.main.temp)}°C`;
+  
+  weatherHumidity.textContent = `Влажность: ${data.main.humidity} %`;
+  weatherSpeed.textContent = `Скорость: ${data.wind.speed} м/с`;
   weatherDescription.textContent = data.weather[0].description;
 
   console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
   console.log('data', data);
-
 }
 
 function setCity(event) {
@@ -188,3 +192,4 @@ showWeather();
 // setInterval(showNextBg, 2000);
 // add Weather
 // 
+// влажность и скорость ветра

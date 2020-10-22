@@ -42,6 +42,7 @@ body {
 }
 
 .city {
+  margin-top: 1rem;
   border-bottom: 1px solid rgb(173, 173, 173);
   max-width: 200px;
   outline: none;
@@ -143,6 +144,12 @@ h3 {
   background-color: rgba(255, 255, 255, .6);
   padding: 2px 8px;
   font-family: 'Commissioner', sans-serif;
+
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  border: thick double #000;
+  transition: .3s;
 }
 
 #next-bg:hover {
