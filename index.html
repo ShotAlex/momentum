@@ -4,10 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Commissioner&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="css/owfont-regular.css">
+  <link rel="stylesheet" href="css//style.css">
   <title>Momentum</title>
 </head>
 <body>
+  <div class="weather">
+    <i class="weather-icon owf"></i>
+    <div class="temperature"></div>
+    <div class="weather-description"></div>
+    <div class="city" contenteditable="true">Минск</div>
+
+  </div>
+
+
   <div class="time">
     <time id="time">00:00:00</time>
     <time id="date">Today, Day Month</time>
@@ -24,8 +34,9 @@
   </h2>
 
   <div class="quote">
-   <h3> <button id="quoteBtn">Quote of the day</button></h3>
+   <h3> <button id="quoteBtn" title="Click to see a different quote">Quote of the day</button></h3>
    <q id="quote">You awesome</q>
+   <p id="quote-author">God</p>
    
   </div>
 

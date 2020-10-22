@@ -21,6 +21,11 @@ body {
   transition: background-image 1s ease-in-out;
 }
 
+.weather {
+  padding: 10px;
+  margin-bottom: 2rem;
+}
+
 .time {
   display: flex;
   flex-direction: column;
@@ -38,6 +43,7 @@ body {
   overflow-wrap: break-word;
 }
 
+.weather,
 .time,
 h1,
 h2,
@@ -96,6 +102,10 @@ h3 {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+#quote-author {
+  
+  margin-top: 0.5rem;
+}
 @media (max-width: 800px) {
   #time {
     font-size: 3rem;

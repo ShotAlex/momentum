@@ -4,8 +4,15 @@ const time = document.getElementById('time'),
       name = document.getElementById('name'),
       focus = document.getElementById('focus'),
       timeDate = document.getElementById('date'),
-      quote = document.getElementById('quote');
+      quote = document.getElementById('quote'),
+      quoteAuthor = document.getElementById('quote-author'),
       quoteBtn = document.getElementById('quoteBtn');
+
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
+
 
 // TIME
 const showTime = () => {
@@ -116,7 +123,8 @@ const showQuote = () => {
     .then(data => {
       const randQuote = +getRandomNumber(1, data.quotes.length)
       const currentQuote = data.quotes[randQuote]
-      quote.innerHTML = `${currentQuote.quote}<br/><br/>${currentQuote.author}`;
+      quote.innerHTML = currentQuote.quote;
+      quoteAuthor.innerHTML = currentQuote.author;
     })
     .catch( err => {
       console.log('Error:', err);
@@ -124,6 +132,37 @@ const showQuote = () => {
     })
 }
 
+// WEATHER
+async function getWeather(city = 'Минск',lang = 'ru') {
+  const keyAPI = 'cacc13c2899b6095815285b1dee10aaf';
+  console.log(keyAPI);
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=${keyAPI}&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+}
+
+async function  showWeather() {
+  const data = await getWeather(city.textContent);
+  console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+  console.log(data);
+
+  weatherIcon.className = 'weather-icon owf';
+
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp}°C`;
+  weatherDescription.textContent = data.weather[0].description;
+}
+
+function setCity(event) {
+  if (event.code === 'Enter') {
+    showWeather();
+    city.blur();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
 
 
 name.addEventListener('keypress', setName);
@@ -139,6 +178,7 @@ setBgGreet();
 getName();
 getFocus();
 showQuote();
+showWeather();
 // TODO
 // setInterval(showNextBg, 2000);
 // add Weather
