@@ -8,7 +8,6 @@ const changeTheme = (type) => {
 
 const setTheme = () => {
   const checked = theme.checked ? 'light' : 'dark';
-  console.log('checked:', checked);
   localStorage.setItem('theme', checked);
   changeTheme(checked);
 }

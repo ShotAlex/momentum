@@ -6,8 +6,25 @@ const weatherIcon = document.querySelector('.weather-icon'),
   weatherSpeed = document.querySelector('.weather-speed'),
   city = document.querySelector('.city');
 
+const weatherCheckbox = document.getElementById('checkbox-temp');
+
+const setMetric = () => {
+  const checked = weatherCheckbox.checked ? 'f' : 'c';
+  console.log('weatherCheckbox:', checked);
+  localStorage.setItem('temp-metric', checked);
+  location.reload();
+  showWeather();
+}
+
+if (localStorage.getItem('temp-metric') === 'f') {
+  weatherCheckbox.checked = true;
+  // changeTheme('light');
+}
+weatherCheckbox.addEventListener('click', setMetric);
+
 // WEATHER
-async function getWeather(currentCity, metric = 'metric') {
+async function getWeather(currentCity) {
+  const metric = localStorage.getItem('temp-metric') === 'c' ? 'metric' : 'imperial';
   const city = currentCity.length
     ? currentCit
     : localStorage.getItem('city') != undefined
@@ -19,9 +36,6 @@ async function getWeather(currentCity, metric = 'metric') {
   const url = `${baseURL}?q=${city}&lang=${lang}&appid=${keyAPI}&units=${metric}`;
   const res = await fetch(url);
   const data = await res.json();
-
-  
-  console.log('getWeather()');
 
   if (!res.ok) {
     alert('Нет такого города!')
@@ -40,10 +54,11 @@ async function showWeather() {
   let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = lang === 'en' ? 'Speed wind:' : 'Скорость ветра:';
   let metricText = lang === 'en' ? 'm/s' : 'м/c';
+  let cf = localStorage.getItem('temp-metric') === 'c' ? '°C' : '°F';
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${parseInt(data.main.temp)}°C`;
+  temperature.textContent = `${parseInt(data.main.temp)} ${cf}`;
   weatherSpeed.textContent = `${speedText} ${Math.round(data.wind.speed)}${metricText}`;
   weatherHumidity.textContent = `${humidityText} ${data.main.humidity} %`;
   weatherDescription.textContent = data.weather[0].description;

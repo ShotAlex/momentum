@@ -157,7 +157,7 @@ const checkLocalStorage = () => {
 const setCheckboxes = () => {
   console.log('ppc heckers');
   checkboxLang.checked = localStorage.getItem('lang') == 'ru' ? false : true
-  checkboxLang.checked = localStorage.getItem('temp-metric') == 'f';
+  // checkboxLang.checked = localStorage.getItem('temp-metric') == 'f';
 }
 
 
