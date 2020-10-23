@@ -19,6 +19,22 @@ const weatherIcon = document.querySelector('.weather-icon'),
 const checkboxLang = document.getElementById('checkbox-lang'),
       checkboxTemp = document.getElementById('checkbox-temp');
 
+// ---------------------------------------
+const body = document.querySelector('body'),
+      wrapper = document.querySelectorAll('.wrapper');
+
+// THEME
+const changeTheme = () => {
+  setTimeout(() => {
+    body.dataset.theme = 'dark';
+    wrapper.forEach(el => {
+      el.setAttribute("data-theme", "dark");
+    });
+  }, 2000);
+}
+// ---------------------------------------
+changeTheme();
+
 
 // TIME
 const showTime = () => {
@@ -38,12 +54,13 @@ const showTime = () => {
 // DATE
 const showDate = (lang = 'en') => {
   let today = new Date(),
-      locale = lang === 'en' ? 'en-us' : 'ru-ru',
+      locale = localStorage.getItem('lang') === 'en' ? 'en-us' : 'ru-ru',
       dayOfWeek = today.toLocaleString(locale, { weekday: 'long' }),
       dayNumber = today.getDate(),
-      month = today.toLocaleString(locale, { month: 'long' });
+      month = today.toLocaleString(locale, { month: 'long' }),
+      year = today.getFullYear()
 
-  timeDate.innerHTML = `${dayOfWeek}, ${dayNumber} ${month}`;
+  timeDate.innerHTML = `${dayOfWeek}, ${dayNumber} ${month} ${year}`;
 }
 
 const addZero = n => (+n < 10 ? '0' : '') + n;
@@ -178,21 +195,22 @@ async function getWeather(currentCity, metric = 'metric') {
 async function  showWeather() {
   const data = await getWeather(city.textContent);
 
+  // let lang = localStorage.getItem('lang')
+
   let humidityText = localStorage.getItem('lang') === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = localStorage.getItem('lang') === 'en' ? 'Speed wind:' : 'Скорость ветра:';
   let metricText = localStorage.getItem('lang') === 'en' ? 'm/s:' : 'м/c:';
 
-
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${parseInt(data.main.temp)}°C`;
+  weatherSpeed.textContent = `${speedText} ${Math.round(data.wind.speed)}${metricText}`;
   weatherHumidity.textContent = `${humidityText} ${data.main.humidity} %`;
-  weatherSpeed.textContent = `${speedText} ${Math.round(data.wind.speed)} ${metricText}`;
   weatherDescription.textContent = data.weather[0].description;
   city.textContent = data.name;
 
-  console.log('data', data);
-  console.log('data', data.name);
+  // console.log('data', data);
+  // console.log('data', data.name);
 }
 
 function setCity(event) {
@@ -213,23 +231,29 @@ const changeLang = () => {
 
 // INIT APP
 const checkLocalStorage = () => {
-  const lang = localStorage.getItem('lang') !== null ? 'ru' : 'en';
+  const lang = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'ru';
   const temp = localStorage.getItem('temp-metric') !== null ? localStorage.getItem('temp-metric') : 'c';
-  console.log(lang);
-  console.log(temp);
+  const theme = localStorage.getItem('theme') !== null ? localStorage.getItem('theme') : 'dark';
+  console.log('checkLocalStorage');
+  console.log('lang :', lang);
+  console.log('temp :', temp);
+  console.log('theme :', theme);
   localStorage.setItem('lang', lang)
   localStorage.setItem('temp-metric', temp)
+  localStorage.setItem('theme', theme)
 }
 
 const setCheckboxes = () => {
-  console.log('pizda');
+  console.log('ppc heckers');
   checkboxLang.checked = localStorage.getItem('lang') == 'ru' ? false : true
-  checkboxLang.checked = localStorage.getItem('temp-metric') == 'f'
+  checkboxLang.checked = localStorage.getItem('temp-metric') == 'f';
 }
 
 
+checkboxLang.addEventListener('click', changeLang)
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
+city.addEventListener('blur', setCity);
 
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
@@ -239,14 +263,6 @@ focus.addEventListener('blur', setFocus);
 quote.addEventListener('click', showQuote);
 nextQuote.addEventListener('click', showQuote);
 nextBg.addEventListener('click', showNextBg);
-
-checkboxLang.addEventListener('click', changeLang)
-
-
-
-
-
-
 
 
 
