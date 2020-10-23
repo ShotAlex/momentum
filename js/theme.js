@@ -1,11 +1,21 @@
 // THEME
-const changeTheme = () => {
-  setTimeout(() => {
-    body.dataset.theme = 'dark';
-    wrapper.forEach(el => {
-      el.setAttribute("data-theme", "dark");
-    });
-  }, 2000);
+const theme = document.getElementById('checkbox-theme');
+
+const changeTheme = (type) => {
+    body.dataset.theme = type;
+    wrapper.forEach(el => el.setAttribute("data-theme", type) );
 }
 
-// changeTheme();
+const setTheme = () => {
+  const checked = theme.checked ? 'light' : 'dark';
+  console.log('checked:', checked);
+  localStorage.setItem('theme', checked);
+  changeTheme(checked);
+}
+
+if (localStorage.getItem('theme') === 'light') {
+  theme.checked = true;
+  changeTheme('light');
+}
+
+theme.addEventListener('click', setTheme);

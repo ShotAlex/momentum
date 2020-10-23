@@ -20,6 +20,9 @@ async function getWeather(currentCity, metric = 'metric') {
   const res = await fetch(url);
   const data = await res.json();
 
+  
+  console.log('getWeather()');
+
   if (!res.ok) {
     alert('Нет такого города!')
     getWeather()
@@ -33,11 +36,10 @@ async function getWeather(currentCity, metric = 'metric') {
 async function showWeather() {
   const data = await getWeather(city.textContent);
 
-  // let lang = localStorage.getItem('lang')
-
-  let humidityText = localStorage.getItem('lang') === 'en' ? 'Humidity:' : 'Влажность:';
-  let speedText = localStorage.getItem('lang') === 'en' ? 'Speed wind:' : 'Скорость ветра:';
-  let metricText = localStorage.getItem('lang') === 'en' ? 'm/s:' : 'м/c:';
+  let lang = localStorage.getItem('lang')
+  let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';
+  let speedText = lang === 'en' ? 'Speed wind:' : 'Скорость ветра:';
+  let metricText = lang === 'en' ? 'm/s' : 'м/c';
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
@@ -47,8 +49,8 @@ async function showWeather() {
   weatherDescription.textContent = data.weather[0].description;
   city.textContent = data.name;
 
-  // console.log('data', data);
-  // console.log('data', data.name);
+  console.log('data', data);
+  console.log('data', data.name);
 }
 
 function setCity(event) {
@@ -59,6 +61,6 @@ function setCity(event) {
 }
 
 city.addEventListener('keypress', setCity);
-city.addEventListener('blur', setCity);
+// city.addEventListener('blur', setCity);
 document.addEventListener('DOMContentLoaded', getWeather);
 showWeather();

@@ -176,7 +176,7 @@ nextBg.addEventListener('click', showNextBg);
 
 
 checkLocalStorage();
-setCheckboxes()
+// setCheckboxes()
 setInterval(showTime, 1000);
 showDate();
 setBgGreet();
