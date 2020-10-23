@@ -17,7 +17,7 @@ const weatherIcon = document.querySelector('.weather-icon'),
       city = document.querySelector('.city');
 // CHECKBOX
 const checkboxLang = document.getElementById('checkbox-lang'),
-      checkboxTemp = document.getElementById('checkbox-lang');
+      checkboxTemp = document.getElementById('checkbox-temp');
 
 
 // TIME
@@ -59,15 +59,30 @@ const checkTimeOfDay = (h) => {
   return h < 6 ? 'night' : h < 12 ? 'morning' : h < 18 ? 'day' : 'evening';
 }
 
+
 // NEXT BACKGROUND
+function setBg(data) {
+  const body = document.querySelector('body');
+  const src = data;
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {
+    body.style.backgroundImage = `url(${src})`;
+    setTimeout(() => nextBg.disabled = false, 4000);
+    // nextBg.disabled = false;
+  };
+}
+
 const showNextBg = () => {
   nextBg.disabled = true;
   let hour = (new Date()).getHours();
   let time = checkTimeOfDay(hour);
   document.body.style.backgroundImage = `url(./assets/images/${time}/${getRandomNumber()}.jpg)`;
-
-  setTimeout(() => nextBg.disabled = false, 1000);
+  let imageSrc = `./assets/images/${time}/${getRandomNumber()}.jpg`;
+  setBg(imageSrc)
 }
+
+
 
 // BACKGROUND AND GREETING
 const setBgGreet = () => {
@@ -138,8 +153,8 @@ const showQuote = () => {
 
 // WEATHER
 async function getWeather(currentCity, metric = 'metric') {
-  const city = (currentCity.length) 
-                ? currentCity 
+  const city = currentCity.length
+                ? currentCit
                 : localStorage.getItem('city') != undefined
                 ? localStorage.getItem('city')
                 : 'Минск';
@@ -166,7 +181,7 @@ async function  showWeather() {
   let humidityText = localStorage.getItem('lang') === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = localStorage.getItem('lang') === 'en' ? 'Speed wind:' : 'Скорость ветра:';
   let metricText = localStorage.getItem('lang') === 'en' ? 'm/s:' : 'м/c:';
-  
+
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
@@ -187,28 +202,57 @@ function setCity(event) {
   }
 }
 
+
+// CHANGE LANGUAGE
+const changeLang = () => {
+  const state = checkboxLang.checked ? 'ru' : 'en';
+  localStorage.setItem('lang', state);
+  console.log('LANG', localStorage.getItem('lang'));
+  // window.location.reload();
+}
+
+// INIT APP
+const checkLocalStorage = () => {
+  const lang = localStorage.getItem('lang') !== null ? 'ru' : 'en';
+  const temp = localStorage.getItem('temp-metric') !== null ? localStorage.getItem('temp-metric') : 'c';
+  console.log(lang);
+  console.log(temp);
+  localStorage.setItem('lang', lang)
+  localStorage.setItem('temp-metric', temp)
+}
+
+const setCheckboxes = () => {
+  console.log('pizda');
+  checkboxLang.checked = localStorage.getItem('lang') == 'ru' ? false : true
+  checkboxLang.checked = localStorage.getItem('temp-metric') == 'f'
+}
+
+
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
-
 
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+
 quote.addEventListener('click', showQuote);
-nextBg.addEventListener('click', showNextBg);
 nextQuote.addEventListener('click', showQuote);
+nextBg.addEventListener('click', showNextBg);
 
-checkboxLang.addEventListener('click', () => {
-  const state = checkboxLang.checked ? 'en' : 'ru'
-  localStorage.setItem('lang', state)
-  console.log('LANG', localStorage.getItem('lang'));
-})
-console.log('after LANG', localStorage.getItem('lang'));
-// FIX LANG
+checkboxLang.addEventListener('click', changeLang)
 
 
 
+
+
+
+
+
+
+
+checkLocalStorage();
+setCheckboxes()
 setInterval(showTime, 1000);
 showDate();
 setBgGreet();

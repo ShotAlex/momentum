@@ -22,8 +22,8 @@ body {
   background-size: cover;
   background-position: center center;
   padding: 10px;
-  background-image: url("");
-  transition: background-image 1s ease-in-out;
+  background-image: url("/assets/images/overlay.png");
+  transition: background-image 2s ease 2s;
   color: var(--color);
 }
 
