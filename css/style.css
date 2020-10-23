@@ -2,10 +2,6 @@
   --color: #fff;
   --color-bg: rgba(0, 0, 0, 0.6);
 }
-/* :root[data-theme="dark"] {
-  --color: #fff;
-  --color-bg: rgba(0, 0, 0, 0.6);
-} */
 
 * {
   box-sizing: border-box;
@@ -26,7 +22,6 @@ body {
   padding: 10px;
   background-image: url("/assets/images/overlay.png");
   transition: background-image 2s ease 2s;
-  /* color: var(--color); */
 }
 
 div[data-theme="light"] {
@@ -38,17 +33,12 @@ div[data-theme="dark"] {
   background-color: var(--color);
 }
 
-
 .wrapper {
   border-radius: 30px;
   padding: 1rem;
 }
 
-.settings,
-.personal,
-.weather,
-.time,
-.quote {
+.wrapper {
   border-radius: 30px;
   padding: 1rem;
 }
