@@ -22,7 +22,7 @@ body {
   background-size: cover;
   background-position: center center;
   padding: 10px;
-  background-image: url("./assets/images/overlay.png");
+  background-image: url("");
   transition: background-image 1s ease-in-out;
   color: var(--color);
 }
@@ -76,12 +76,13 @@ body {
   overflow-wrap: break-word;
 }
 
+.settings,
 .personal,
 .weather,
 .time,
 .quote {
     background-color: var(--color-bg);
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 1rem;
 }
 #time {
@@ -177,6 +178,82 @@ h3 {
 
 #next-bg:disabled {
   cursor: wait;
+}
+
+/* SETTINGS */
+
+.lang,
+.temp-deg,
+.theme {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.settings-text {
+  font-size: 2rem;
+  margin: 0 6px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0 auto;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  background-color: var(--color-bg);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  background-color: var(--color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+  background-color: var(--color-bg);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px var(--color);
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
  
 @media (max-width: 800px) {

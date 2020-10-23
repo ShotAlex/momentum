@@ -15,6 +15,10 @@ const weatherIcon = document.querySelector('.weather-icon'),
       weatherHumidity = document.querySelector('.weather-humidity'),
       weatherSpeed = document.querySelector('.weather-speed'),
       city = document.querySelector('.city');
+// CHECKBOX
+const checkboxLang = document.getElementById('checkbox-lang'),
+      checkboxTemp = document.getElementById('checkbox-lang');
+
 
 // TIME
 const showTime = () => {
@@ -62,7 +66,7 @@ const showNextBg = () => {
   let time = checkTimeOfDay(hour);
   document.body.style.backgroundImage = `url(./assets/images/${time}/${getRandomNumber()}.jpg)`;
 
-  setTimeout(() => nextBg.disabled = false, 3000);
+  setTimeout(() => nextBg.disabled = false, 1000);
 }
 
 // BACKGROUND AND GREETING
@@ -133,26 +137,47 @@ const showQuote = () => {
 }
 
 // WEATHER
-async function getWeather(city = 'Минск',lang = 'ru') {
+async function getWeather(currentCity, metric = 'metric') {
+  const city = (currentCity.length) 
+                ? currentCity 
+                : localStorage.getItem('city') != undefined
+                ? localStorage.getItem('city')
+                : 'Минск';
+  const lang = localStorage.getItem('lang');
   const keyAPI = 'cacc13c2899b6095815285b1dee10aaf';
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=${keyAPI}&units=metric`;
+  const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+  const url = `${baseURL}?q=${city}&lang=${lang}&appid=${keyAPI}&units=${metric}`;
   const res = await fetch(url);
   const data = await res.json();
-  return data;
+
+  if(!res.ok) {
+    alert('Нет такого города!')
+    getWeather()
+  } else {
+    localStorage.setItem('city', data.name)
+    city.textContent = localStorage.getItem('city');
+    return data;
+  }
 }
 
 async function  showWeather() {
   const data = await getWeather(city.textContent);
+
+  let humidityText = localStorage.getItem('lang') === 'en' ? 'Humidity:' : 'Влажность:';
+  let speedText = localStorage.getItem('lang') === 'en' ? 'Speed wind:' : 'Скорость ветра:';
+  let metricText = localStorage.getItem('lang') === 'en' ? 'm/s:' : 'м/c:';
+  
+
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${parseInt(data.main.temp)}°C`;
-  
-  weatherHumidity.textContent = `Влажность: ${data.main.humidity} %`;
-  weatherSpeed.textContent = `Скорость: ${data.wind.speed} м/с`;
+  weatherHumidity.textContent = `${humidityText} ${data.main.humidity} %`;
+  weatherSpeed.textContent = `${speedText} ${Math.round(data.wind.speed)} ${metricText}`;
   weatherDescription.textContent = data.weather[0].description;
+  city.textContent = data.name;
 
-  console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
   console.log('data', data);
+  console.log('data', data.name);
 }
 
 function setCity(event) {
@@ -174,6 +199,16 @@ quote.addEventListener('click', showQuote);
 nextBg.addEventListener('click', showNextBg);
 nextQuote.addEventListener('click', showQuote);
 
+checkboxLang.addEventListener('click', () => {
+  const state = checkboxLang.checked ? 'en' : 'ru'
+  localStorage.setItem('lang', state)
+  console.log('LANG', localStorage.getItem('lang'));
+})
+console.log('after LANG', localStorage.getItem('lang'));
+// FIX LANG
+
+
+
 setInterval(showTime, 1000);
 showDate();
 setBgGreet();
@@ -181,3 +216,7 @@ getName();
 getFocus();
 showQuote();
 showWeather();
+
+// LANG
+// METRIC
+// THEME
