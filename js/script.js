@@ -10,13 +10,6 @@ const time = document.getElementById('time'),
 const checkboxLang = document.getElementById('checkbox-lang'),
       checkboxTemp = document.getElementById('checkbox-temp');
 
-// ---------------------------------------
-const body = document.querySelector('body'),
-      wrapper = document.querySelectorAll('.wrapper');
-
-
-
-
 // TIME
 const showTime = () => {
   let today = new Date(),
@@ -26,10 +19,7 @@ const showTime = () => {
 
   time.innerHTML = `${addZero(hour)}:${addZero(min)}:${addZero(sec)}`;
 
-  if (min === 0 && sec === 0) {
-    showNextBg();
-    // showQuote();
-  }
+  if (min === 0 && sec === 0) showNextBg();
 }
 
 // DATE

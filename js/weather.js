@@ -12,13 +12,12 @@ const setMetric = () => {
   const checked = weatherCheckbox.checked ? 'f' : 'c';
   console.log('weatherCheckbox:', checked);
   localStorage.setItem('temp-metric', checked);
-  location.reload();
+  // location.reload();
   showWeather();
 }
 
 if (localStorage.getItem('temp-metric') === 'f') {
   weatherCheckbox.checked = true;
-  // changeTheme('light');
 }
 weatherCheckbox.addEventListener('click', setMetric);
 
@@ -76,6 +75,6 @@ function setCity(event) {
 }
 
 city.addEventListener('keypress', setCity);
-// city.addEventListener('blur', setCity);
+city.addEventListener('blur', setCity);
 document.addEventListener('DOMContentLoaded', getWeather);
 showWeather();

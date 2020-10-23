@@ -1,5 +1,7 @@
 // THEME
-const theme = document.getElementById('checkbox-theme');
+const theme = document.getElementById('checkbox-theme'),
+      body = document.querySelector('body'),
+      wrapper = document.querySelectorAll('.wrapper');
 
 const changeTheme = (type) => {
     body.dataset.theme = type;
