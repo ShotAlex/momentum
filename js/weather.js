@@ -23,7 +23,7 @@ weatherCheckbox.addEventListener('click', setMetric);
 
 // WEATHER
 async function getWeather(currentCity) {
-  
+
   const metric = localStorage.getItem('temp-metric') === 'c' ? 'metric' : 'imperial';
   const city = currentCity.length
   ? currentCity
@@ -36,7 +36,7 @@ async function getWeather(currentCity) {
   const url = `${baseURL}?q=${city}&lang=${lang}&appid=${keyAPI}&units=${metric}`;
   const res = await fetch(url);
   const data = await res.json();
-  
+
   if (!res.ok) {
     alert('Нет такого города!')
     getWeather('Minsk');
@@ -55,12 +55,12 @@ async function showWeather() {
   let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = lang === 'en' ? 'Speed wind:' : 'Скорость ветра:';
   let cf = localStorage.getItem('temp-metric') === 'c' ? '°C' : '°F';
-  let metricText = lang === 'en' ? 'm/s' : 'м/c';
-  if (cf === '°C') {
-    metricText = lang === 'en' ? 'm/s' : 'м/c';
-  } else {
-    metricText = lang === 'en' ? 'mil/h' : 'миль/ч';
-  }
+  // let metricText = lang === 'en' ? 'm/s' : 'м/c';
+  let metricText = '';
+  (cf === '°C') 
+    ? metricText = lang === 'en' ? 'm/s' : 'м/c'
+    : metricText = lang === 'en' ? 'mph' : 'миля/ч';
+
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);

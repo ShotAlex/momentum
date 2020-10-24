@@ -270,6 +270,25 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
+.settings-text-theme {
+  height: 34px;
+  width: 34px;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+.dark-circle {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color);
+}
+.light-circle {
+  background-color: var(--color);
+  border: 1px solid var(--color-bg);
+}
+
+
+
+
+
 @media (max-width: 800px) {
   #time {
     font-size: 3rem;
