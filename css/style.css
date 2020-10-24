@@ -286,7 +286,7 @@ input:checked+.slider:before {
 
 
 
-
+/* MEDIA QUERY */
 @media (max-width: 800px) {
   #time {
     font-size: 3rem;
@@ -299,8 +299,6 @@ input:checked+.slider:before {
     width: fit-content;
     justify-content: center;
   }
-
-  .settings {}
 
   .weather {
     margin-top: 1rem;
