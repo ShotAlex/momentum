@@ -54,8 +54,13 @@ async function showWeather() {
   let lang = localStorage.getItem('lang')
   let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = lang === 'en' ? 'Speed wind:' : 'Скорость ветра:';
-  let metricText = lang === 'en' ? 'm/s' : 'м/c';
   let cf = localStorage.getItem('temp-metric') === 'c' ? '°C' : '°F';
+  let metricText = lang === 'en' ? 'm/s' : 'м/c';
+  if (cf === '°C') {
+    metricText = lang === 'en' ? 'm/s' : 'м/c';
+  } else {
+    metricText = lang === 'en' ? 'mil/h' : 'миль/ч';
+  }
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
