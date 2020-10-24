@@ -10,47 +10,50 @@
 </head>
 <body>
 
-  <!-- SETTINGS -->
-  <div class="settings wrapper" data-theme="dark">
+  <div class="flex">
+    <!-- SETTINGS -->
+    <div class="settings wrapper" data-theme="dark">
 
-    <div class="lang">
-      <span class="settings-text">EN</span>
-      <label class="switch">
-        <input type="checkbox" id="checkbox-lang">
-        <span class="slider round"></span>
-      </label>
-      <span class="settings-text">RU</span>
+      <div class="lang">
+        <span class="settings-text">EN</span>
+        <label class="switch">
+          <input type="checkbox" id="checkbox-lang">
+          <span class="slider round"></span>
+        </label>
+        <span class="settings-text">RU</span>
+      </div>
+      <div class="temp-deg">
+        <span class="settings-text">°C</span>
+        <label class="switch">
+          <input type="checkbox" id="checkbox-temp">
+          <span class="slider round"></span>
+        </label>
+        <span class="settings-text">°F</span>
+      </div>
+      <div class="theme">
+        <span class="settings-text">Dark </span>
+        <label class="switch">
+          <input type="checkbox" id="checkbox-theme">
+          <span class="slider round"></span>
+        </label>
+        <span class="settings-text">Light</span>
+      </div>
     </div>
-    <div class="temp-deg">
-      <span class="settings-text">°C</span>
-      <label class="switch">
-        <input type="checkbox" id="checkbox-temp">
-        <span class="slider round"></span>
-      </label>
-      <span class="settings-text">°F</span>
-    </div>
-    <div class="theme">
-      <span class="settings-text">Dark </span>
-      <label class="switch">
-        <input type="checkbox" id="checkbox-theme">
-        <span class="slider round"></span>
-      </label>
-      <span class="settings-text">Light</span>
+
+    <!-- WEATHER -->
+    <div class="weather wrapper" data-theme="dark">
+      <div class="temp">
+        <i class="weather-icon owf"></i>
+        <div class="temperature">- °C</div>
+      </div>
+      <div class="weather-description"></div>
+      <div class="weather-humidity"></div>
+      <div class="weather-speed"></div>
+      <div class="city" contenteditable="true"></div>
     </div>
 
   </div>
 
-  <!-- WEATHER -->
-  <div class="weather wrapper" data-theme="dark">
-    <div class="temp">
-      <i class="weather-icon owf"></i>
-      <div class="temperature">- °C</div>
-    </div>
-    <div class="weather-description"></div>
-    <div class="weather-humidity"></div>
-    <div class="weather-speed"></div>
-    <div class="city" contenteditable="true" ></div>
-  </div>
 
   <!-- TIME -->
   <div class="time wrapper" data-theme="dark">

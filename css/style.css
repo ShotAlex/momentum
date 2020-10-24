@@ -1,6 +1,7 @@
 :root {
   --color: #fff;
   --color-bg: rgba(0, 0, 0, 0.6);
+  --color-bg-light: rgba(255, 255, 255, 0.8)
 }
 
 * {
@@ -30,29 +31,34 @@ div[data-theme="dark"] {
 }
 div[data-theme="light"] {
   color: var(--color-bg);
-  background-color: var(--color);
+  background-color: var(--color-bg-light);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .wrapper {
   border-radius: 30px;
   padding: 1rem;
+  transition: 1s;
 }
 
-.wrapper {
-  border-radius: 30px;
-  padding: 1rem;
+.flex {
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
 .weather {
   margin: 0 0 0 auto;
   padding: 10px;
-  margin-bottom: 3rem;
   align-items: baseline;
 }
 
 .temp {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   margin-bottom: .5rem;
 }
 
@@ -62,7 +68,7 @@ div[data-theme="light"] {
 
 .weather-icon {
   margin-right: 0.5rem;
-  font-size: 4rem;
+  font-size: 3rem;
   height: fit-content;
 }
 
@@ -104,18 +110,19 @@ h1 {
   max-width: 600px;
   width: 100%;
   padding: 2px 10px;
-  margin-bottom: 1em;
   word-break: break-all;
 }
 
 .personal {
   max-width: 600px;
   width: 100%;
-  padding: .5rem 1rem;
+}
+
+.name {
+  display: inline-block;
 }
 
 h2 {
-  margin-bottom: .5em;
   opacity: .9;
 }
 
@@ -146,7 +153,7 @@ h3 {
 #quote-author {
   width: fit-content;
   margin: 0 1rem 0 auto;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 #next-quote {
@@ -188,12 +195,16 @@ h3 {
 }
 
 /* SETTINGS */
+.settings {
+  height: fit-content;
+}
+
 
 .lang,
 .temp-deg,
 .theme {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 }
 .settings-text {
   font-size: 2rem;
@@ -258,7 +269,7 @@ input:checked+.slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
- 
+
 @media (max-width: 800px) {
   #time {
     font-size: 3rem;
