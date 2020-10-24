@@ -78,6 +78,10 @@ div[data-theme="light"] {
   outline: none;
 }
 
+.city:hover {
+  border-bottom: 1px solid rgb(138, 138, 138);
+}
+
 
 
 
@@ -90,8 +94,6 @@ div[data-theme="light"] {
 }
 
 #focus {
-  max-width: 600px;
-  width: 100%;
   word-break: break-all;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -117,8 +119,20 @@ h1 {
   width: 100%;
 }
 
-.name {
+#focus:hover,
+#name:hover {
+  text-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+#name,
+#focus {
   display: inline-block;
+  outline: none;
+}
+
+#name:focus,
+#focus:focus {
+  border-bottom: 2px outset #1C6EA4;
 }
 
 h2 {
@@ -302,5 +316,9 @@ input:checked+.slider:before {
 
   .weather {
     margin-top: 1rem;
+  }
+
+  #next-quote {
+    top: -50px;
   }
 }

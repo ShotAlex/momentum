@@ -1,5 +1,3 @@
-
-
 // QUOTE
 const quote = document.getElementById('quote'),
       quoteAuthor = document.getElementById('quote-author'),
@@ -21,7 +19,5 @@ const showQuote = () => {
     })
 }
 
-quote.addEventListener('click', showQuote);
 nextQuote.addEventListener('click', showQuote);
-
 showQuote();
