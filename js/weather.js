@@ -1,10 +1,10 @@
 // weather
 const weatherIcon = document.querySelector('.weather-icon'),
-  temperature = document.querySelector('.temperature'),
-  weatherDescription = document.querySelector('.weather-description'),
-  weatherHumidity = document.querySelector('.weather-humidity'),
-  weatherSpeed = document.querySelector('.weather-speed'),
-  city = document.querySelector('.city');
+      temperature = document.querySelector('.temperature'),
+      weatherDescription = document.querySelector('.weather-description'),
+      weatherHumidity = document.querySelector('.weather-humidity'),
+      weatherSpeed = document.querySelector('.weather-speed'),
+      city = document.querySelector('.city');
 
 const weatherCheckbox = document.getElementById('checkbox-temp');
 
@@ -23,22 +23,23 @@ weatherCheckbox.addEventListener('click', setMetric);
 
 // WEATHER
 async function getWeather(currentCity) {
+  
   const metric = localStorage.getItem('temp-metric') === 'c' ? 'metric' : 'imperial';
   const city = currentCity.length
-    ? currentCit
-    : localStorage.getItem('city') != undefined
-      ? localStorage.getItem('city')
-      : 'Минск';
+  ? currentCity
+  : localStorage.getItem('city') != undefined
+  ? localStorage.getItem('city')
+  : 'Минск';
   const lang = localStorage.getItem('lang');
   const keyAPI = 'cacc13c2899b6095815285b1dee10aaf';
   const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
   const url = `${baseURL}?q=${city}&lang=${lang}&appid=${keyAPI}&units=${metric}`;
   const res = await fetch(url);
   const data = await res.json();
-
+  
   if (!res.ok) {
     alert('Нет такого города!')
-    getWeather()
+    getWeather('Minsk');
   } else {
     localStorage.setItem('city', data.name)
     city.textContent = localStorage.getItem('city');
@@ -48,6 +49,7 @@ async function getWeather(currentCity) {
 
 async function showWeather() {
   const data = await getWeather(city.textContent);
+  console.log('showWeather: this work');
 
   let lang = localStorage.getItem('lang')
   let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';

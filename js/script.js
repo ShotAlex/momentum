@@ -135,7 +135,7 @@ const checkLocalStorage = () => {
   const lang = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'ru';
   const temp = localStorage.getItem('temp-metric') !== null ? localStorage.getItem('temp-metric') : 'c';
   const theme = localStorage.getItem('theme') !== null ? localStorage.getItem('theme') : 'dark';
-  console.log('checkLocalStorage');
+  console.log('checkLocalStorage ----');
   console.log('lang :', lang);
   console.log('temp :', temp);
   console.log('theme :', theme);
@@ -144,35 +144,16 @@ const checkLocalStorage = () => {
   localStorage.setItem('theme', theme)
 }
 
-const setCheckboxes = () => {
-  console.log('ppc heckers');
-  checkboxLang.checked = localStorage.getItem('lang') == 'ru' ? false : true
-  // checkboxLang.checked = localStorage.getItem('temp-metric') == 'f';
-}
-
-
 checkboxLang.addEventListener('click', changeLang)
-
-
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
-
-
 nextBg.addEventListener('click', showNextBg);
 
-
-
-
 checkLocalStorage();
-// setCheckboxes()
 setInterval(showTime, 1000);
 showDate();
 setBgGreet();
 getName();
 getFocus();
-
-// LANG
-// METRIC
-// THEME
