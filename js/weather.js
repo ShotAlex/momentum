@@ -10,9 +10,7 @@ const weatherCheckbox = document.getElementById('checkbox-temp');
 
 const setMetric = () => {
   const checked = weatherCheckbox.checked ? 'f' : 'c';
-  console.log('weatherCheckbox:', checked);
   localStorage.setItem('temp-metric', checked);
-  // location.reload();
   showWeather();
 }
 
@@ -20,6 +18,8 @@ if (localStorage.getItem('temp-metric') === 'f') {
   weatherCheckbox.checked = true;
 }
 weatherCheckbox.addEventListener('click', setMetric);
+
+
 
 // WEATHER
 async function getWeather(currentCity) {
@@ -38,8 +38,9 @@ async function getWeather(currentCity) {
   const data = await res.json();
 
   if (!res.ok) {
+    city.textContent = localStorage.getItem('city');
     alert('Нет такого города!')
-    getWeather('Minsk');
+    // getWeather();
   } else {
     localStorage.setItem('city', data.name)
     city.textContent = localStorage.getItem('city');
@@ -49,39 +50,46 @@ async function getWeather(currentCity) {
 
 async function showWeather() {
   const data = await getWeather(city.textContent);
-  console.log('showWeather: this work');
 
   let lang = localStorage.getItem('lang')
   let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = lang === 'en' ? 'Speed wind:' : 'Скорость ветра:';
   let cf = localStorage.getItem('temp-metric') === 'c' ? '°C' : '°F';
-  // let metricText = lang === 'en' ? 'm/s' : 'м/c';
   let metricText = '';
-  (cf === '°C') 
+  (cf === '°C')
     ? metricText = lang === 'en' ? 'm/s' : 'м/c'
     : metricText = lang === 'en' ? 'mph' : 'миля/ч';
-
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${parseInt(data.main.temp)} ${cf}`;
-  weatherSpeed.textContent = `${speedText} ${Math.round(data.wind.speed)}${metricText}`;
   weatherHumidity.textContent = `${humidityText} ${data.main.humidity} %`;
+  weatherSpeed.textContent = `${speedText} ${Math.round(data.wind.speed)} ${metricText}`;
   weatherDescription.textContent = data.weather[0].description;
   city.textContent = data.name;
-
-  console.log('data', data);
-  console.log('data', data.name);
 }
 
 function setCity(event) {
+  console.log('unFOCUS');
+  city.onblur = () => {
+    let inputCity = city.textContent.replace(/ +/g, '')
+    console.log(inputCity);
+    if (inputCity === '') {
+      city.textContent = localStorage.getItem('city');
+      console.log('WORK');
+    }
+  }
+
+
   if (event.code === 'Enter') {
     showWeather();
     city.blur();
   }
 }
 
+
 city.addEventListener('keypress', setCity);
 city.addEventListener('blur', setCity);
+city.addEventListener('focus', () => city.textContent = '');
 document.addEventListener('DOMContentLoaded', getWeather);
 showWeather();

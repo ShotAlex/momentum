@@ -1,14 +1,8 @@
 
 const time = document.getElementById('time'),
       greeting = document.getElementById('greeting'),
-      name = document.getElementById('name'),
-      focus = document.getElementById('focus'),
       timeDate = document.getElementById('date'),
       nextBg = document.getElementById('next-bg');
-
-// CHECKBOX
-const checkboxLang = document.getElementById('checkbox-lang'),
-      checkboxTemp = document.getElementById('checkbox-temp');
 
 // TIME
 const showTime = () => {
@@ -23,15 +17,15 @@ const showTime = () => {
 }
 
 // DATE
-const showDate = (lang = 'en') => {
-  let today = new Date(),
-      locale = localStorage.getItem('lang') === 'en' ? 'en-us' : 'ru-ru',
-      dayOfWeek = today.toLocaleString(locale, { weekday: 'long' }),
-      dayNumber = today.getDate(),
-      month = today.toLocaleString(locale, { month: 'long' }),
-      year = today.getFullYear()
-
-  timeDate.innerHTML = `${dayOfWeek}, ${dayNumber} ${month} ${year}`;
+const showDate = () => {
+  const  locale = localStorage.getItem('lang') === 'en' ? 'en-us' : 'ru-ru';
+  const date = new Date().toLocaleString(locale, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  timeDate.innerHTML = date;
 }
 
 const addZero = n => (+n < 10 ? '0' : '') + n;
@@ -86,74 +80,8 @@ const setBgGreet = () => {
 
 
 
-
-// GET NAME and FOCUS
-const getName = () => {
-  (localStorage.getItem('name') === null || localStorage.getItem('name') == '')
-    ? name.textContent = '[Enter Name]'
-    : name.textContent = localStorage.getItem('name')
-}
-const getFocus = () => {
-  (localStorage.getItem('focus') === null || localStorage.getItem('focus') == '')
-    ? focus.textContent = '[Enter Focus]'
-    : focus.textContent = localStorage.getItem('focus')
-}
-
-// SET NAME and FOCUS
-const setName = (e) => {
-  if (e.type === 'keypress') {
-    if (e.which == 13 || e.keyCode == 13) {
-      localStorage.setItem('name', e.target.innerText)
-      name.blur()
-    }
-  } else {
-    localStorage.setItem('name', e.target.innerText)
-  }
-}
-
-const setFocus = (e) => {
-  if (e.type === 'keypress') {
-    if (e.which == 13 || e.keyCode == 13) {
-      localStorage.setItem('focus', e.target.innerText)
-      focus.blur()
-    }
-  } else {
-    localStorage.setItem('focus', e.target.innerText)
-  }
-}
-
-// CHANGE LANGUAGE
-const changeLang = () => {
-  const state = checkboxLang.checked ? 'ru' : 'en';
-  localStorage.setItem('lang', state);
-  console.log('LANG', localStorage.getItem('lang'));
-  // window.location.reload();
-}
-
-// INIT APP
-const checkLocalStorage = () => {
-  const lang = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'ru';
-  const temp = localStorage.getItem('temp-metric') !== null ? localStorage.getItem('temp-metric') : 'c';
-  const theme = localStorage.getItem('theme') !== null ? localStorage.getItem('theme') : 'dark';
-  console.log('checkLocalStorage ----');
-  console.log('lang :', lang);
-  console.log('temp :', temp);
-  console.log('theme :', theme);
-  localStorage.setItem('lang', lang)
-  localStorage.setItem('temp-metric', temp)
-  localStorage.setItem('theme', theme)
-}
-
-checkboxLang.addEventListener('click', changeLang)
-name.addEventListener('keypress', setName);
-name.addEventListener('blur', setName);
-focus.addEventListener('keypress', setFocus);
-focus.addEventListener('blur', setFocus);
 nextBg.addEventListener('click', showNextBg);
 
-checkLocalStorage();
 setInterval(showTime, 1000);
 showDate();
 setBgGreet();
-getName();
-getFocus();

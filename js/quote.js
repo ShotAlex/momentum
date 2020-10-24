@@ -4,6 +4,7 @@
 const quote = document.getElementById('quote'),
       quoteAuthor = document.getElementById('quote-author'),
       nextQuote = document.getElementById('next-quote');
+      // quoteTitle = document.getElementById('quote-title');
 
 const showQuote = () => {
   fetch('./assets/data/quotes.json')

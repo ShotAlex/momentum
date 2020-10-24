@@ -43,14 +43,13 @@ div[data-theme="light"] {
 
 .flex {
   display: flex;
-  justify-content: space-around;
-  /* align-items: center; */
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 2rem;
 }
 
 .weather {
-  margin: 0 0 0 auto;
+  /* margin: 0 0 0 auto; */
   padding: 10px;
   align-items: baseline;
 }
@@ -153,7 +152,6 @@ h3 {
 #quote-author {
   width: fit-content;
   margin: 0 1rem 0 auto;
-  margin-top: 1rem;
 }
 
 #next-quote {
@@ -292,5 +290,19 @@ input:checked+.slider:before {
 @media (max-width: 800px) {
   #time {
     font-size: 3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .flex {
+    flex-direction: column;
+    width: fit-content;
+    justify-content: center;
+  }
+
+  .settings {}
+
+  .weather {
+    margin-top: 1rem;
   }
 }
