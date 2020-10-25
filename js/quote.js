@@ -14,7 +14,6 @@ const showQuote = () => {
       quoteAuthor.innerHTML = currentQuote.author;
     })
     .catch(err => {
-      console.log('Error:', err);
       quote.innerHTML = `Good day!`;
     })
 }

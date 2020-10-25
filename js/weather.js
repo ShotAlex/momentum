@@ -51,11 +51,12 @@ async function getWeather(currentCity) {
 async function showWeather() {
   const data = await getWeather(city.textContent);
 
-  let lang = localStorage.getItem('lang')
+  let lang = localStorage.getItem('lang');
   let humidityText = lang === 'en' ? 'Humidity:' : 'Влажность:';
   let speedText = lang === 'en' ? 'Speed wind:' : 'Скорость ветра:';
   let cf = localStorage.getItem('temp-metric') === 'c' ? '°C' : '°F';
   let metricText = '';
+
   (cf === '°C')
     ? metricText = lang === 'en' ? 'm/s' : 'м/c'
     : metricText = lang === 'en' ? 'mph' : 'миля/ч';
@@ -70,16 +71,12 @@ async function showWeather() {
 }
 
 function setCity(event) {
-  console.log('unFOCUS');
   city.onblur = () => {
     let inputCity = city.textContent.replace(/ +/g, '')
-    console.log(inputCity);
     if (inputCity === '') {
       city.textContent = localStorage.getItem('city');
-      console.log('WORK');
     }
   }
-
 
   if (event.code === 'Enter') {
     showWeather();
@@ -93,3 +90,30 @@ city.addEventListener('blur', setCity);
 city.addEventListener('focus', () => city.textContent = '');
 document.addEventListener('DOMContentLoaded', getWeather);
 showWeather();
+
+
+//  WORKED geolocation
+// 'api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}'
+if (navigator.geolocation) {
+  let location_timeout = setTimeout("geolocFail()", 10000);
+
+  navigator.geolocation.getCurrentPosition( position => {
+    clearTimeout(location_timeout);
+
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+
+    console.log('lat', lat);
+    console.log('lon', lon);
+  }, function (error) {
+    clearTimeout(location_timeout);
+    geolocFail();
+  });
+} else {
+  // Fallback for no geolocation
+  geolocFail();
+}
+
+navigator.geolocation.getCurrentPosition(position => {
+  console.log('position', position)
+})
