@@ -7,8 +7,8 @@ const checkLocalStorage = () => {
   const lang = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'ru';
   const temp = localStorage.getItem('temp-metric') !== null ? localStorage.getItem('temp-metric') : 'c';
   const theme = localStorage.getItem('theme') !== null ? localStorage.getItem('theme') : 'dark';
-  const name = localStorage.getItem('name') !== null ? localStorage.getItem('name') : null;
-  const focus = localStorage.getItem('focus') !== null ? localStorage.getItem('focus') : null;
+  const name = localStorage.getItem('name') !== null ? localStorage.getItem('name') : '';
+  const focus = localStorage.getItem('focus') !== null ? localStorage.getItem('focus') : '';
   localStorage.setItem('lang', lang)
   localStorage.setItem('temp-metric', temp)
   localStorage.setItem('theme', theme)

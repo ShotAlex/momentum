@@ -1,4 +1,7 @@
 // weather
+const KEY_API = 'cacc13c2899b6095815285b1dee10aaf';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+
 const weatherIcon = document.querySelector('.weather-icon'),
       temperature = document.querySelector('.temperature'),
       weatherDescription = document.querySelector('.weather-description'),
@@ -31,16 +34,13 @@ async function getWeather(currentCity) {
   ? localStorage.getItem('city')
   : 'Минск';
   const lang = localStorage.getItem('lang');
-  const keyAPI = 'cacc13c2899b6095815285b1dee10aaf';
-  const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
-  const url = `${baseURL}?q=${city}&lang=${lang}&appid=${keyAPI}&units=${metric}`;
+  const url = `${BASE_URL}?q=${city}&lang=${lang}&appid=${KEY_API}&units=${metric}`;
   const res = await fetch(url);
   const data = await res.json();
 
   if (!res.ok) {
     city.textContent = localStorage.getItem('city');
     alert('Нет такого города!')
-    // getWeather();
   } else {
     localStorage.setItem('city', data.name)
     city.textContent = localStorage.getItem('city');
