@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/owfont-regular.css">
+  <link rel="stylesheet" href="css//style.css">
+  <title>Momentum</title>
+</head>
+<body>
+
+  <div class="flex">
+    <!-- SETTINGS -->
+    <div class="settings wrapper" data-theme="dark">
+
+      <div class="lang">
+        <span class="settings-text">EN</span>
+        <label class="switch">
+          <input type="checkbox" id="checkbox-lang">
+          <span class="slider round"></span>
+        </label>
+        <span class="settings-text">RU</span>
+      </div>
+      <div class="temp-deg">
+        <span class="settings-text">°C</span>
+        <label class="switch">
+          <input type="checkbox" id="checkbox-temp">
+          <span class="slider round"></span>
+        </label>
+        <span class="settings-text">°F</span>
+      </div>
+      <div class="theme">
+        <span class="settings-text settings-text-theme dark-circle"></span>
+        <label class="switch">
+          <input type="checkbox" id="checkbox-theme">
+          <span class="slider round"></span>
+        </label>
+        <span class="settings-text settings-text-theme light-circle"></span>
+      </div>
+    </div>
+
+    <!-- WEATHER -->
+    <div class="weather wrapper" data-theme="dark">
+      <div class="temp">
+        <i class="weather-icon owf"></i>
+        <div class="temperature">- °C</div>
+      </div>
+      <div class="weather-description"></div>
+      <div class="weather-humidity"></div>
+      <div class="weather-speed"></div>
+      <div class="city" contenteditable="true"></div>
+    </div>
+
+  </div>
+
+
+  <!-- TIME -->
+  <div class="time wrapper" data-theme="dark">
+    <time id="time">00:00:00</time>
+    <time id="date">Today, Day Month</time>
+  </div>
+
+  <div class="personal wrapper" data-theme="dark">
+    <!-- NAME -->
+    <h1 class="name">
+      <span id="greeting"></span>
+      <span id="name" contenteditable="true"></span>
+    </h1>
+    <!-- FOCUS -->
+    <h2 class="focus wrapper" data-theme="dark">
+      <p id="focus-title">What's your focus for today?</p>
+      <p id="focus" contenteditable="true"></p>
+    </h2>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote wrapper" data-theme="dark">
+    <h3 id="quote-title">Quote of the day</h3>
+    <q id="quote">You awesome</q>
+    <p id="quote-author">God</p>
+    <button id="next-quote" title="Click to see a different quote"> NEXT QUOTE </button>
+  </div>
+
+  <button id="next-bg" title="Click to see a different background image"> NEXT IMAGE </button>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/weather.js"></script>
+  <script src="/js/nameFocus.js"></script>
+  <script src="/js/quote.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="./js/settings.js"></script>
+</body>
+</html>
